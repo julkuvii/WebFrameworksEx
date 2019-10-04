@@ -1,0 +1,38 @@
+{
+    "chargers": [
+        {
+            "id": 1 ,
+            "city":"Oulu",
+            "code":"001A",
+            "type":"slow"
+        },
+
+        {
+            "id": 2 ,
+            "city":"Oulu",
+            "code":"002A",
+            "type":"fast"
+        },
+
+        {
+            "id": 3 ,
+            "city":"Jyväskylä",
+            "code":"001B",
+            "type":"free"
+        },
+
+        {
+            "id": 4 ,
+            "city":"Jyväskylä",
+            "code":"002B",
+            "type":"fast"
+        },
+
+        {
+            "id": 5 ,
+            "city":"Kuopio",
+            "code":"001C",
+            "type":"fast"
+        }
+    ]
+}
