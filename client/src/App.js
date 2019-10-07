@@ -44,13 +44,18 @@ class App extends React.Component {
               inputForm= { this.state.inputForm }
               registerCancel={ this.registerCancel }
               registrate= { this.registrate }
+              
               />
             }>
             </Route>
 
             <Route path="/login" exact render={
               (routeProps) =>
-              <Login/>
+              <Login
+              onCancel={ this.registerCancel }
+              { ...routeProps }
+
+              />
             }>
 
             </Route>
