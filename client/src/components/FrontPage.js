@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './FrontPage.module.css';
 import { Link } from "react-router-dom";
 
-export default function FrontPage() {
+export default function FrontPage(props) {
     return (
         <div className={styles.frontpage}>
             <div className="header">
@@ -17,6 +17,16 @@ export default function FrontPage() {
                 </div>
             </div>
 
+            <div className="Client">
+                { props.inputForm.firstname } <br/>
+                { props.inputForm.lastname } <br/>
+                { props.inputForm.phone } <br/>
+                { props.inputForm.registration } <br/>
+                { props.inputForm.username } <br/>
+                { props.inputForm.password } <br/>
+
+
+            </div>
 
             <div className="cities">
             <ul>
