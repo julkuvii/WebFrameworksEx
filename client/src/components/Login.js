@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import styles from './Login.module.css';
 
 export default function Login(props) {
     function Cancel(event) {
@@ -6,20 +7,23 @@ export default function Login(props) {
         props.history.goBack();
     }
     return (
-        <div>
+        <div className={ styles.login }>
             <div className="header">
             <h1>HEADER</h1>
             </div>
+
             <h2>Login</h2>
-
-            <label>Username</label>
-            <input name="username"></input>
-            <label>Password</label>
-            <input name="password"></input>
-            
-            <button>Login</button>
-            <button onClick= { Cancel }>Cancel</button>
-
+                <div className= {styles.loginForm} >
+                    <label>Username</label><br/>
+                    <input name="username"></input><br/>
+                    <label>Password</label><br/>
+                    <input name="password"></input> <br/>
+                    
+                    <div><button>Login</button>
+                    </div>
+                    <div><button onClick= { Cancel }>Cancel</button>
+                    </div>
+                </div>
         </div>
     )
 }

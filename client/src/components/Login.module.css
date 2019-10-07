@@ -1,0 +1,30 @@
+.login {
+    background-color: #0b3079;
+    min-height: 100vh;
+    font-size: calc(10px + 2vmin);
+    color: white;    
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    margin: auto, 30px;
+    text-align: center;
+    
+
+}
+
+.loginForm input{
+    width: 300px;
+    margin: auto;
+    display: block;
+}
+
+button {
+    display: flex;
+    width: 70px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    display: block;
+}
