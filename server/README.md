@@ -1,33 +1,40 @@
-# express-api-demo
-Demonstration of basic REST API implementation with Express + Node
+
+# Express Basic Passport
+
+> Express example application with API secured with HTTP Basic Authentication 
+
 
 ## Installation
-Install dependencies after cloning
+
+- Clone and install dependencies `npm install` 
+- Additionally you need to have a MySQL service running and configure with a database + user to access it. See db.js for example username, password and database names. Change or adapt as needed. The application will create the necessary tables into the database.
+
+
+### Startup
+
+> Start the application 
+
+```shell
+$ node index.js
 ```
-npm install
+
+---
+
+## Features
+
+> Application offers the following API routes
+- /users [GET, POST]
+  * GET will retrieve the usernames and id's of the uses.
+  * POST will create a new user with the provided username and password.
+```javascript
+{
+  "username": "SomeUserName",
+  "password": "PasswordForTheUser"
+}
 ```
 
-## Usage
+- /hello-protected [GET]
+  * Will return "Hello Protected World!" text, but requires authentication headers be sent according to HTTP Basic scheme
 
-Start the application
-```
-npm run api
-```
-
-
-Example API will be listening on http://localhost:3000
-
-Available API endpoints
-*  /hello [GET, POST, PUT, DELETE]
-*  /hello/{param1}/world/{param2} [GET]
-*  /world [GET, POST, PUT, DELETE]
-
-*  /dogs [GET, POST]
-*  /dogs/{dogId} [GET, DELETE]
-
-
-*  /apikey/new/{username} [GET]
-*  /apikey/protected} [GET]
-
-
- Use for example curl or Postman tools to send HTTP requests to the endpoints
+- /hello-unprotected [GET]
+  * Will return simple "Hello World!" text.

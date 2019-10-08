@@ -11,6 +11,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      users: [],
+      cities: [],
       registerForm: false,
 
       inputForm: { firstname:"", lastname:"", phone:"", registration:"", username:"", password:""}
@@ -29,6 +31,16 @@ class App extends React.Component {
         username: event.target.username.value,
         password: event.target.password.value
       },
+    })
+  }
+
+  componentDidMount = () =>{
+    axios.get('http://localhost:4000/users').then(result => {
+      this.setState({ users: result.data });
+    })
+    .catch(error => {
+      console.error(error);
+      this.setState({ networkError: true })
     })
   }
 

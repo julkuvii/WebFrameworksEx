@@ -1,11 +1,26 @@
 import React from 'react';
 import styles from './Login.module.css';
+import Auth from './Auth';
 
 export default function Login(props) {
     function Cancel(event) {
         event.preventDefault();
         props.history.goBack();
     }
+
+    function login(event) {
+        event.preventDefault();
+        Auth.authenticate(event.target['username'].value, event.target['password'].value)
+            .then(result =>
+                {
+                    props.loginSuccess();
+                    props.history.push(props.redirectPathOnSuccess);
+                })
+                .catch(() => {
+                    props.loginFail();
+                })
+    }
+
     return (
         <div className={ styles.login }>
             <div className="header">
@@ -19,7 +34,7 @@ export default function Login(props) {
                     <label>Password</label><br/>
                     <input name="password"></input> <br/>
                     
-                    <div><button>Login</button>
+                    <div><button type="submit">Login</button>
                     </div>
                     <div><button onClick= { Cancel }>Cancel</button>
                     </div>

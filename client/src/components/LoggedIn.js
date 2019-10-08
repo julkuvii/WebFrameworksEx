@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './LoggedIn.module.css';
 
-export default function LoggedIn() {
+export default function LoggedIn(props) {
     return (
         <div>
             <div className= { styles.LoggedIn } >

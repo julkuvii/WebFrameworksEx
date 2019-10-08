@@ -6,9 +6,9 @@ try {
     host            : 'localhost',
     user            : 'root',
     password        : 'test',
-    database        : 'demo'
+    database        : 'cardb'
   });
-  
+
 } catch (error) {
   console.error('Mysql pool create failed');
   console.error(error);
@@ -23,12 +23,12 @@ const api = {
         if(error) {
           reject(error)
         };
-    
+
         resolve(results);
       })
     });
-  
-    return promise;  
+
+    return promise;
   },
   closeAll: () => {
     pool.end();
@@ -36,4 +36,3 @@ const api = {
 };
 
 module.exports = api;
-

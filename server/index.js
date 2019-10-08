@@ -1,75 +1,107 @@
 const express = require('express');
 const app = express();
 const port = 4000;
-const dogComponent = require('./components/dogs');
 const bodyParser = require('body-parser');
-const apiKeyDemo = require('./components/apiKeyDemo');
 const cors = require('cors');
 const db = require('./db');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+var Strategy = require('passport-http').BasicStrategy;
 
-const customHeaderCheckerMiddleware = function(req, res, next) {
-    console.log('Middleware is active!');
-    if(req.headers['custom-header-param'] === undefined)
-    {
-        return res.status(400).json({ reason: "custom-header-param header missing"});
-    }
-
-    // pass the control to the next handler in line
-    next();
-}
-
-//app.use(customHeaderCheckerMiddleware);
+const saltRounds = 4;
+//jää tänne
 app.use(bodyParser.json());
 app.use(cors())
 
+passport.use(new Strategy((username, password, cb) => {
+  db.query('SELECT id, username, password FROM users WHERE username = ?', [username]).then(dbResults => {
 
-/* basic HTTP method handling */
-app.get('/hello', (req, res) => res.send('Hello GET World!'));
-app.post('/hello', (req, res) => res.send('Hello POST World!'));
-app.put('/hello', (req, res) => res.send('Hello PUT World!'));
-app.delete('/hello', (req, res) => res.send('Hello DELETE World!'));
+    if(dbResults.length == 0)
+    {
+      return cb(null, false);
+    }
 
-/* Route parameters */
-app.get('/hello/:parameter1/world/:parameter2', (req, res) => {
-    res.send('Your route parameters are\n' + JSON.stringify(req.params));
-});
+    bcrypt.compare(password, dbResults[0].password).then(bcryptResult => {
+      if(bcryptResult == true)
+      {
+        cb(null, dbResults[0]);
+      }
+      else
+      {
+        return cb(null, false);
+      }
+    })
 
-/* Example of defining routes with different method handlers */
-app.route('/world')
-    .get((req,res) => res.send('get World'))
-    .post((req, res) => res.send('post World'))
-    .put((req, res) => res.send('put World'))
-    .delete((req, res) => res.send('delete World'))
+  }).catch(dbError => cb(err))
+}));
 
-/* demonstrate route module/component usage - the dogComponent content is defined in separate file */
-app.use('/dogs', dogComponent);
 
-app.use('/apiKey', apiKeyDemo);
+//jää tänne
+app.get('/hello-unprotected',        
+        (req, res) => res.send('Hello World!'));
 
+app.get('/hello-protected',
+        passport.authenticate('basic', { session: false }),
+        (req, res) => res.send('Hello Protected World!'));
+
+
+app.get('/users', (req, res) => {
+  db.query('SELECT id, username FROM users').then(results => {
+    res.json(results);
+  })
+})
+
+app.get('/users/:id',
+        passport.authenticate('basic', { session: false }),
+        (req, res) => {
+          db.query('SELECT id, username FROM users WHERE id = ?', [req.params.id]).then(results => {
+            res.json(results);
+          })
+        });
+
+app.post('/users', (req, res) => {
+  let username = req.body.username.trim();
+  let password = req.body.password.trim();
+
+  if((typeof username === "string") &&
+     (username.length > 4) &&
+     (typeof password === "string") &&
+     (password.length > 6))
+  {
+    bcrypt.hash(password, saltRounds).then(hash =>
+      db.query('INSERT INTO users (username, password) VALUES (?,?)', [username, hash])
+    )
+    .then(dbResults => {
+        console.log(dbResults);
+        res.sendStatus(201);
+    })
+    .catch(error => res.sendStatus(500));
+  }
+  else {
+    console.log("incorrect username or password, both must be strings and username more than 4 long and password more than 6 characters long");
+    res.sendStatus(400);
+  }
+})
 
 
 /* DB init */
-Promise.all(    
-    [
-        db.query(`CREATE TABLE IF NOT EXISTS dogHouse(
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(32),
-            image VARCHAR(256)
-        )`)
-        // Add more table create statements if you need more tables
-    ]
+Promise.all(
+  [
+      db.query(`CREATE TABLE IF NOT EXISTS users(
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          firstname VARCHAR(32),
+          lastname VARCHAR(32),
+          phone VARCHAR(32),
+          registration VARCHAR(32),
+          username VARCHAR(32),
+          password VARCHAR(256)
+      )`)
+      // Add more table create statements if you need more tables
+  ]
 ).then(() => {
-    console.log('database initialized');
-    app.listen(port, () => {
-        console.log(`Example API listening on http://localhost:${port}\n`);
-        console.log('Available API endpoints');
-        console.log('  /hello [GET, POST, PUT, DELETE]');
-        console.log('  /hello/{param1}/world/{param2} [GET]');
-        console.log('  /world [GET, POST, PUT, DELETE]');
-        console.log('\n  /dogs [GET, POST]');
-        console.log('  /dogs/{dogId} [GET, DELETE]');
-        console.log('\n  /apikey/new/{username} [GET]');
-        console.log('  /apikey/protected} [GET]');
-        console.log('\n\n Use for example curl or Postman tools to send HTTP requests to the endpoints');
-    });
-});
+  console.log('database initialized');
+  app.listen(port, () => {
+      console.log(`Example API listening on http://localhost:${port}\n`);
+  });
+})
+.catch(error => console.log(error));
