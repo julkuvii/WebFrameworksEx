@@ -9,7 +9,7 @@ const passport = require('passport');
 var Strategy = require('passport-http').BasicStrategy;
 
 const saltRounds = 4;
-//jää tänne
+
 app.use(bodyParser.json());
 app.use(cors())
 
@@ -36,7 +36,6 @@ passport.use(new Strategy((username, password, cb) => {
 }));
 
 
-//jää tänne
 app.get('/hello-unprotected',        
         (req, res) => res.send('Hello World!'));
 
