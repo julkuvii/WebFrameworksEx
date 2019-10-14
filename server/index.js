@@ -6,7 +6,7 @@ const cors = require('cors');
 const db = require('./db');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-var Strategy = require('passport-http').BasicStrategy;
+const Strategy = require('passport-http').BasicStrategy;
 
 const saltRounds = 4;
 
@@ -88,10 +88,6 @@ Promise.all(
   [
       db.query(`CREATE TABLE IF NOT EXISTS users(
           id INT AUTO_INCREMENT PRIMARY KEY,
-          firstname VARCHAR(32),
-          lastname VARCHAR(32),
-          phone VARCHAR(32),
-          registration VARCHAR(32),
           username VARCHAR(32),
           password VARCHAR(256)
       )`)

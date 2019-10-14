@@ -15,7 +15,7 @@ class App extends React.Component {
       cities: [],
       registerForm: false,
 
-      inputForm: { firstname:"", lastname:"", phone:"", registration:"", username:"", password:""}
+      inputForm: { username:"", password:""}
     };
   }
 
@@ -24,10 +24,6 @@ class App extends React.Component {
     this.setState({
       inputForm:
       {
-        firstname: event.target.firstname.value,
-        lastname: event.target.lastname.value,
-        phone: event.target.phone.value,
-        registration: event.target.registration.value,
         username: event.target.username.value,
         password: event.target.password.value
       },
