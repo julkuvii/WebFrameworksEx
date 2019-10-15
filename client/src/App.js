@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FrontPage from './components/FrontPage';
 import Login from './components/Login'
 import Register from './components/Register'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ProtectedRoute from './components/ProtectedRoute';
+import Auth from './components/Auth';
 import axios from 'axios';
 
-class App extends React.Component {
+export default class App extends Component {
   constructor(props) 
   {
     super(props);
@@ -14,9 +16,19 @@ class App extends React.Component {
       users: [],
       cities: [],
       registerForm: false,
+      isAuthenticated: false,
 
       inputForm: { username:"", password:""}
     };
+  }
+
+  onLogin = () => {
+    this.setState({ isAuthenticated: true })
+  }
+
+  onLoginFail = () => {
+    this.setState({ isAuthenticated: false });
+    console.log("login failed");
   }
 
   handleSubmit = (event) => {
