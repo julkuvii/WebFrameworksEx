@@ -9,7 +9,7 @@
 
         {
             "id": 2 ,
-            "city":"Oulu",
+            "city":"Helsinki",
             "code":"002A",
             "type":"fast"
         },
@@ -23,7 +23,7 @@
 
         {
             "id": 4 ,
-            "city":"Jyväskylä",
+            "city":"Tampere",
             "code":"002B",
             "type":"fast"
         },

@@ -1,6 +1,6 @@
 
-.frontpage {
-    background-color: #282c34;
+.loggedIn {
+    background-color: #0b3079;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -12,4 +12,57 @@ button {
     height: 40px;
     margin: 15px;
     float: right;
+}
+
+
+.header {
+  margin-left: 210px;
+
+
+}
+
+.prices {
+  height: 100%;
+  margin-left: 210px;
+  
+
+}
+
+button {
+  height: 40px;
+  margin: 15px;
+  float: right;
+}
+
+.cities {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.cities a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.cities a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+  .cities {padding-top: 15px;}
+  .cities a {font-size: 18px;}
 }

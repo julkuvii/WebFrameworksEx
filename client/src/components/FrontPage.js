@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function FrontPage(props) {
     return (
         <div className={styles.frontpage}>
-            <div className="header">
+            <div className={styles.header}>
             <h1>HEADER</h1>
 
                 <div>
@@ -18,13 +18,15 @@ export default function FrontPage(props) {
             </div>
 
 
-            <div className="cities">
-            <ul>
-                <li>Cities</li>
-            </ul>
+            <div className={styles.cities}>
+                <a href="#">Oulu</a>
+                <a href="#">Helsinki</a>
+                <a href="#">Jyväskylä</a>
+                <a href="#">Tampere</a>
+                <a href="#">Kuopio</a>
             </div>
 
-            <div className="prices">
+            <div className={styles.prices}>
                 <h2>Prices</h2>
                 <ul>
                     <li>FREE 22kW charger with Type 2 Connectors</li>
