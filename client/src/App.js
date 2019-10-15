@@ -26,6 +26,9 @@ export default class App extends Component {
     this.setState({ isAuthenticated: true })
   }
 
+  onLogout = () => {
+    this.setState({ isAuthenticated : false})
+  }
   onLoginFail = () => {
     this.setState({ isAuthenticated: false });
     console.log("login failed");
@@ -99,7 +102,8 @@ export default class App extends Component {
             {
               (routeProps) => 
               <LoggedIn
-                
+              logoutSuccess = { this.onLogout }
+
                 />
             }>
             </ProtectedRoute>

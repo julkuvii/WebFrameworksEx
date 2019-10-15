@@ -3,16 +3,21 @@ import styles from './LoggedIn.module.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default function LoggedIn(props) {
+    function logout(event){
+        event.preventDefault();
+        props.logoutSuccess();
+                          
+    }
     return (
-        <div className={styles.loggedIn}>
+        <div className={ styles.loggedIn }>
             <div className= { styles.header } >
             <h1>HEADER</h1>
             <h2>Welcome!</h2>
-            <button><Link to="/">Log Out</Link></button>
+            <button onClick= { logout }>Log Out</button>
             
             </div>
 
-            <div className={styles.cities}>
+            <div className={ styles.cities }>
                 <a href="#">Oulu</a>
                 <a href="#">Helsinki</a>
                 <a href="#">Jyväskylä</a>
@@ -21,7 +26,7 @@ export default function LoggedIn(props) {
                 <a href="#">Past charges</a>
             </div>
 
-            <div className={styles.prices}>
+            <div className={ styles.prices }>
                 <h2>Prices</h2>
                 <ul>
                     <li>FREE 22kW charger with Type 2 Connectors</li>
