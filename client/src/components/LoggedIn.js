@@ -11,6 +11,7 @@ export default function LoggedIn(props) {
             </div>
 
             <div className="cities">
+                <p>This shows when logged in</p>
                 <ul>
                     <li>Cities</li>
                 </ul>

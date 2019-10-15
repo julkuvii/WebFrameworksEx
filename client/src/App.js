@@ -4,8 +4,8 @@ import Login from './components/Login'
 import Register from './components/Register'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ProtectedRoute from './components/ProtectedRoute';
-import Auth from './components/Auth';
 import axios from 'axios';
+import LoggedIn from './components/LoggedIn';
 
 export default class App extends Component {
   constructor(props) 
@@ -73,6 +73,10 @@ export default class App extends Component {
               (routeProps) =>
               <Login
               onCancel={ this.registerCancel }
+              loginSuccess = { this.onLogin }
+              loginFail = { this.onLoginFail }
+              userInfo = { this.state.userInfo }
+              redirectPathOnSuccess="/loggedIn"
               { ...routeProps }
 
               />
@@ -90,6 +94,16 @@ export default class App extends Component {
             }>
 
             </Route>
+
+            <ProtectedRoute isAuthenticated= { this.state.isAuthenticated } path="/loggedIn" exact render =
+            {
+              (routeProps) => 
+              <LoggedIn
+                
+                />
+            }>
+            </ProtectedRoute>
+
         </Router>
 
       </div>
@@ -98,4 +112,3 @@ export default class App extends Component {
 
 }
 
-export default App;

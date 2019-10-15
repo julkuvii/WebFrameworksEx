@@ -28,6 +28,7 @@ export default function Login(props) {
             </div>
 
             <h2>Login</h2>
+            <form onSubmit = { login }>
                 <div className= {styles.loginForm} >
                     <label>Username</label><br/>
                     <input name="username"></input><br/>
@@ -39,6 +40,7 @@ export default function Login(props) {
                     <div><button onClick= { Cancel }>Cancel</button>
                     </div>
                 </div>
+            </form>
         </div>
     )
 }
