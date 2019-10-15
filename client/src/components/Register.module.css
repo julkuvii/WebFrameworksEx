@@ -19,3 +19,13 @@
     margin: auto;
     display: block;
 }
+
+button {
+    height: 40px;
+    margin: 15px;
+    float: right;
+    border-color: #e7e7e7;
+    color: black;
+    border-radius: 4px;
+}
+

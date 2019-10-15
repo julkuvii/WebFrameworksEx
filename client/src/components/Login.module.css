@@ -21,10 +21,11 @@
 }
 
 button {
-    display: flex;
-    width: 70px;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    display: block;
+    height: 40px;
+    margin: 15px;
+    float: right;
+    border-color: #e7e7e7;
+    color: black;
+    border-radius: 4px;
 }
+
