@@ -35,15 +35,6 @@ passport.use(new Strategy((username, password, cb) => {
   }).catch(dbError => cb(err))
 }));
 
-
-app.get('/hello-unprotected',        
-        (req, res) => res.send('Hello World!'));
-
-app.get('/hello-protected',
-        passport.authenticate('basic', { session: false }),
-        (req, res) => res.send('Hello Protected World!'));
-
-
 app.get('/users', (req, res) => {
   db.query('SELECT id, username FROM users').then(results => {
     res.json(results);

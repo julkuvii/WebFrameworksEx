@@ -27,6 +27,7 @@ export default function FrontPage(props) {
             </div>
 
             <div className={styles.prices}>
+                
                 <h2>Prices</h2>
                 <ul>
                     <li>FREE 22kW charger with Type 2 Connectors</li>
