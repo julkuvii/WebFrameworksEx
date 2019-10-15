@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './LoggedIn.module.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default function LoggedIn(props) {
     return (
         <div>
             <div className= { styles.LoggedIn } >
             <h1>HEADER</h1>
-            <button>Log Out</button>
+            <button><Link to="/">Log Out</Link></button>
             <button>Past Charges</button>
             </div>
 
