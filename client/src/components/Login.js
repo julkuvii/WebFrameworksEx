@@ -33,7 +33,7 @@ export default function Login(props) {
                     <label>Username</label><br/>
                     <input name="username"></input><br/>
                     <label>Password</label><br/>
-                    <input name="password"></input> <br/>
+                    <input type="password" name="password"></input> <br/>
                     
                     <div><button type="submit">Login</button>
                     </div>
