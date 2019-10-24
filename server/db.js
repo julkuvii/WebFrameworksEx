@@ -3,9 +3,9 @@ let pool = null;
 try {
   pool  = mysql.createPool({
     connectionLimit : 10,
-    host            : 'localhost',
-    user            : 'root',
-    password        : 'test',
+    host            : 'database-1.cicxxw3ekz9l.us-east-1.rds.amazonaws.com',
+    user            : 'admin',
+    password        : 'viivivihaareactia',
     database        : 'cardb'
   });
 

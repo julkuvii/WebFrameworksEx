@@ -46,7 +46,7 @@ export default class App extends Component {
   }
 
   componentDidMount = () =>{
-    axios.get('http://localhost:4000/users').then(result => {
+    axios.get('http://ec2-52-91-45-90.compute-1.amazonaws.com/users').then(result => {
       this.setState({ users: result.data });
     })
     .catch(error => {

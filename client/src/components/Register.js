@@ -6,7 +6,7 @@ export default function Register(props) {
     function executeRegister(event) {
         event.preventDefault();
         props.onSubmit(event);
-        axios.post('http://localhost:4000/users', {
+        axios.post('http://ec2-52-91-45-90.compute-1.amazonaws.com/users', {
             username: event.target.username.value,
             password: event.target.password.value
           })
